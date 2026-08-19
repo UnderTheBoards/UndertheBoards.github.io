@@ -251,6 +251,29 @@ img {
     color: #333;
 }
 
+/* --- MOBILE OPTIMIZATION --- */
+
+/* This targets screens smaller than 768px (tablets and phones) */
+@media screen and (max-width: 768px) {
+    
+    /* Turn off the fixed parallax effect on mobile */
+    .parallax {
+        background-attachment: scroll; /* Changes it back to normal scrolling */
+        background-position: center center;
+        background-size: cover;
+        
+        /* Optional: You can make the image sections a bit shorter on phones */
+        height: 60vh; 
+    }
+    
+    /* Make the main text a bit smaller so it fits nicely */
+    .content h1 {
+        font-size: 2.5rem;
+    }
+    .content h2 {
+        font-size: 2rem;
+    }
+}
 /* Small animation so it doesn't just instantly appear */
 @keyframes popIn {
     from { transform: scale(0.8); opacity: 0; }
