@@ -9,8 +9,13 @@
 body, html {
     height: 100%;
     scroll-behavior: smooth;
+    
+    /* This stops horizontal scrolling and removes the white bar */
+    overflow-x: hidden; 
+    
+    /* This ensures the page never stretches past the screen width */
+    max-width: 100%; 
 }
-
 /* --- THE PARALLAX MAGIC --- */
 .parallax {
     /* Make each section take up the full height of the screen */
