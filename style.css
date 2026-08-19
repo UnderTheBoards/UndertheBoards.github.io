@@ -1,0 +1,252 @@
+/* Reset default margins and set a clean font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+/* --- THE PARALLAX MAGIC --- */
+.parallax {
+    /* Make each section take up the full height of the screen */
+    height: 100vh;
+
+    /* The core properties that create the parallax effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* Center the text inside the section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Add a dark, semi-transparent overlay so white text is readable over any image */
+.parallax::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Bring the text above the dark overlay */
+.content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 20px;
+}
+
+.content h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.content h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 1.2rem;
+}
+
+/* --- SPECIFIC BACKGROUND IMAGES --- */
+/* Using placeholder images from Unsplash */
+.bg-img-1 { 
+    background-image: url('Bells_silly.jpg'); 
+}
+.bg-img-2 { 
+    background-image: url('LoB1.jpg'); 
+}
+.bg-img-3 { 
+    background-image: url('Masque.jpg'); 
+}
+.bg-img-4 { 
+    background-image: url('Usher.jpg'); 
+}
+/* --- NORMAL TEXT SECTIONS --- */
+.normal-section {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.normal-section h1{
+    font-size: 3.2rem;
+}
+.normal-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.normal-section p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* --- HAMBURGER BUTTON --- */
+.menu-btn {
+    position: fixed;   /* Keeps it from scrolling */
+    top: 30px;
+    left: 30px;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 100;      /* Keeps the button on top of everything */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* The three lines of the hamburger */
+.menu-btn div {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transition: 0.4s; /* Smooth animation */
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Drop shadow so it's visible over light images */
+}
+
+/* Animate the lines into an "X" when the .change class is added by JS */
+.menu-btn.change .bar1 {
+    transform: translate(0, 10px) rotate(-45deg);
+}
+.menu-btn.change .bar2 {
+    opacity: 0;
+}
+.menu-btn.change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+}
+
+/* --- NAVIGATION OVERLAY --- */
+.nav-menu {
+    height: 100vh;
+    width: 0;          /* Hidden by default */
+    position: fixed;
+    z-index: 99;       /* Sits just underneath the hamburger button */
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-x: hidden;
+    transition: 0.5s ease; /* Smooth slide-in effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* When active, the menu takes up the left side of the screen */
+.nav-menu.active {
+    width: 350px; 
+}
+
+.nav-menu ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+
+.nav-menu ul li {
+    margin: 30px 0;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.nav-menu ul li a:hover {
+    color: white;
+}
+
+/* Mobile responsiveness for the menu */
+@media screen and (max-width: 450px) {
+    .nav-menu.active {
+        width: 100%; /* Takes up full screen on mobile */
+    }
+}
+/* --- POPOUT OVERLAY (MODAL) --- */
+.popout-modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 200; /* Must be higher than the nav menu (99) and hamburger (100) */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    align-items: center;
+    justify-content: center;
+}
+
+/* This class is added by JavaScript to show the popout */
+.popout-modal.show {
+    display: flex;
+}
+
+/* The actual white box inside the overlay */
+.popout-content {
+    background-color: #fff;
+    color: #333;
+    padding: 40px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: popIn 0.3s ease-out; /* Quick pop-in animation */
+}
+
+.popout-content h2 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.popout-content p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+/* The Close Button (X) */
+.close-popout {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-popout:hover {
+    color: #333;
+}
+
+/* Small animation so it doesn't just instantly appear */
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

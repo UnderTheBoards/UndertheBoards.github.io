@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Scrolling Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Hamburger Menu Button -->
+    <div class="menu-btn" id="menuBtn">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+
+    <!-- Navigation Overlay -->
+    <!-- Navigation Overlay -->
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            
+            <li><a href="#" class="popout-trigger" data-title="Tickets" data-text="Get your tickets here.">Tickets</a></li>
+            <li><a href="#" class="popout-trigger" data-title="About Us" data-text="We are a few nerds, just getting together to do a pile of Poe">About Us</a></li>
+            <li><a href="mailto:utboards@outlook.com">Contact Us</a></li>
+            <li><a href="#" class="popout-trigger" data-title="Mailing List" data-text="Sign up for our mailing list!" data-show-form="true">Mailing List</a></li>
+        </ul>
+    </nav>
+
+    <!-- Parallax Section 1 -->
+    <section class="parallax bg-img-1">
+        <div class="content">
+            <img src="utb2.png">
+            <p>Performing the works of Poe for 15 years</p>
+           
+                       
+        </div>
+    </section>
+
+    <!-- Normal Scrolling Section -->
+    <section class="normal-section">
+        <h1>An Evening of Poe</h1>
+        <h2>October 23, 24 and 25 at StageOne </h2>
+        <p><i>Including these favorites:</i></p>
+        <br>
+        <p>Tell Tale Heart</p>
+        <p>William Wilson</p>
+        <p>Premature Burial</p>
+        <p>Murders in the Rue Morgue</p>
+        <p>The Raven</p>
+    </section>
+
+    <!-- Parallax Section 2 -->
+    <section class="parallax bg-img-2">
+        <div class="content">
+            <h2>Tickets coming soon!</h2>
+            <p></p>
+            <p></p>
+        </div>
+    </section>
+
+    <!-- Normal Scrolling Section -->
+    <section class="normal-section">
+        <h2>We should say something more here....</h2>
+        <p>Perhaps some Poe quotes... or something</p>
+    </section>
+
+    <!-- Parallax Section 3 -->
+    <section class="parallax bg-img-3">
+        <div class="content">
+            <h2>definitely a quote here.. about our awesomeness</h2>
+            <p>"Kelly really made me believe that she had killed Tony!"  - A satisfied customer...</p>
+        </div>
+    </section>
+    
+    <!-- New Normal Scrolling Section -->
+    <section class="normal-section">
+        <h2>A moose once bit my sister</h2>
+        <p>Moose bites can be very nasty!</p>
+    </section>
+
+    <!-- Parallax Section 4 -->
+    <section class="parallax bg-img-4">
+        <div class="content">
+            <h2>Make sure and sign up for our mailing list!</h2>
+            <p></p>
+        </div>
+    </section>
+    <!-- The Popout Overlay (Modal) -->
+        <div id="popoutModal" class="popout-modal">
+            <div class="popout-content">
+                <span class="close-popout" id="closePopout">&times;</span>
+                <h2 id="popoutTitle">Default Title</h2>
+                <p id="popoutText">Default text goes here.</p>
+                
+                <!-- THE NEW JOTFORM CONTAINER -->
+            <!-- It starts with display: none so it is hidden by default -->
+            <div id="jotformContainer" style="display: none; margin-top: 20px;">
+            
+                <!-- PASTE YOUR JOTFORM IFRAME CODE RIGHT HERE -->
+
+    <iframe
+      id="JotFormIFrame-262287806808064"
+      title="Mailing List"
+      onload="window.parent.scrollTo(0,0)"
+      allowtransparency="true"
+      allow="geolocation; microphone; camera; fullscreen; payment"
+      src="https://form.jotform.com/262287806808064"
+      frameborder="0"
+      style="min-width:100%;max-width:100%;height:539px;border:none;"
+      scrolling="no"
+    >
+    </iframe>
+    <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+    <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-262287806808064']", "https://form.jotform.com/")</script>
+    
+                
+                
+                </div>
+            </div>
+        </div>
+    
+    
+    
+    
+    
+    <!-- JavaScript for the Menu Toggle -->
+    <script>
+        // Hamburger Menu Logic
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('change');
+            navMenu.classList.toggle('active');
+        });
+
+        // Popout Logic
+        const popoutModal = document.getElementById('popoutModal');
+        const closePopout = document.getElementById('closePopout');
+        const popoutTitle = document.getElementById('popoutTitle');
+        const popoutText = document.getElementById('popoutText');
+        const triggers = document.querySelectorAll('.popout-trigger');
+
+        // Loop through all nav links and add a click event
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', function(event) {
+                event.preventDefault(); // Stops the link from jumping to the top of the page
+                
+                // Get the text from the data attributes in the HTML
+                const title = this.getAttribute('data-title');
+                const text = this.getAttribute('data-text');
+                
+                // Check if this specific link should show the form
+                const showForm = this.getAttribute('data-show-form');
+                
+                // Put that text into the popout box
+                popoutTitle.innerText = title;
+                popoutText.innerText = text;
+                
+                // If the attribute equals "true", show the form. Otherwise, hide it.
+                if (showForm === "true") {
+                        jotformContainer.style.display = "block";
+                } else {
+                        jotformContainer.style.display = "none";
+        }
+                
+                // Show the popout
+                popoutModal.classList.add('show');
+                
+                // Optional: Close the slide-out menu in the background
+                menuBtn.classList.remove('change');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close the popout when the X is clicked
+        closePopout.addEventListener('click', () => {
+            popoutModal.classList.remove('show');
+        });
+
+        // Close the popout if the user clicks anywhere outside of the white box
+        window.addEventListener('click', (event) => {
+            if (event.target === popoutModal) {
+                popoutModal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
