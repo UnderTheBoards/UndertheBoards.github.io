@@ -13,7 +13,7 @@ body, html {
     scroll-behavior: smooth;
     
     /* This stops horizontal scrolling and removes the white bar */
-    overflow-x: hidden; 
+    /* overflow-x: hidden;  */
     
     /* This ensures the page never stretches past the screen width */
     max-width: 100%; 
