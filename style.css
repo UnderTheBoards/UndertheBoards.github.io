@@ -213,6 +213,10 @@ body, html {
     border-radius: 10px;
     width: 80%;
     max-width: 500px;
+/* --- NEW RULES FOR MOBILE SCROLLING --- */
+    max-height: 85vh; /* Never let the box be taller than 85% of the screen */
+    overflow-y: auto; /* If content is too tall, create a scrollbar inside the box */
+    
     text-align: center;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
