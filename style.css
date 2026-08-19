@@ -109,28 +109,45 @@ body, html {
     line-height: 1.6;
 }
 
-/* --- HAMBURGER BUTTON --- */
+/* --- UPDATED HAMBURGER BUTTON --- */
 .menu-btn {
     position: fixed;   /* Keeps it from scrolling */
-    top: 30px;
-    left: 30px;
+    top: 20px;
+    left: 25px;
     width: 35px;
-    height: 25px;
     cursor: pointer;
-    z-index: 100;      /* Keeps the button on top of everything */
+    z-index: 100;      
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
 }
 
-/* The three lines of the hamburger */
+/* Adjust bar spacing */
 .menu-btn div {
     width: 100%;
     height: 4px;
     background-color: white;
-    transition: 0.4s; /* Smooth animation */
+    transition: 0.4s;
     border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Drop shadow so it's visible over light images */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 5px; /* Spacing between the bars */
+}
+
+/* --- NEW SMALL MENU LABEL --- */
+.menu-label {
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    margin-top: 2px;
+    transition: opacity 0.3s ease;
+}
+
+/* Fades out the "MENU" text when the button changes to an "X" */
+.menu-btn.change .menu-label {
+    opacity: 0;
 }
 
 /* Animate the lines into an "X" when the .change class is added by JS */
