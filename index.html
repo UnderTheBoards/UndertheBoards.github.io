@@ -23,7 +23,12 @@
     <nav class="nav-menu" id="navMenu">
         <ul>
             
-            <li><a href="#" class="popout-trigger" data-title="Tickets" data-text="Get your tickets here.">Tickets</a></li>
+            <li><a href="#" class="popout-trigger" 
+               data-title="Tickets" 
+               data-text="Tickets can be purchased here."
+               data-img="images/your-ticket-image.jpg" 
+               data-url="https://your-ticket-sales-website.com"
+               data-alt="Buy tickets here">Tickets</a></li>
             <li><a href="#" class="popout-trigger" data-title="About Us" data-text="Since 2010, Kelly, Eric, and Tony have been adapting and performing the
                     works of Edgar Allan Poe. They started at the Frazier Museum, moved to the Belle of Louisville, and now find their home at StageOne. 
                     They have performed over 30 different stories and poems.
@@ -76,7 +81,7 @@
     <!-- Parallax Section 3 -->
     <section class="parallax bg-img-3">
         <div class="content">
-            <h2>And now was acknowledged the presence of the Red Death. He had come like a thief in the night. </h2>
+            <h2> </h2>
             <p>The Masque of the Red Death</p>
         </div>
     </section>
@@ -100,6 +105,7 @@
                 <span class="close-popout" id="closePopout">&times;</span>
                 <h2 id="popoutTitle">Default Title</h2>
                 <p id="popoutText">Default text goes here.</p>
+        <div id="popoutImageContainer" style="margin-top: 20px;"></div>
                 
                 <!-- THE NEW JOTFORM CONTAINER -->
             <!-- It starts with display: none so it is hidden by default -->
@@ -160,6 +166,11 @@
                 
                 // Check if this specific link should show the form
                 const showForm = this.getAttribute('data-show-form');
+
+                // 2. Get the new image attributes
+                const imgSrc = this.getAttribute('data-img');
+                const linkUrl = this.getAttribute('data-url');
+                const imgAlt = this.getAttribute('data-alt') || 'Image link';
                 
                 // Put that text into the popout box
                 popoutTitle.innerText = title;
@@ -170,6 +181,19 @@
                         jotformContainer.style.display = "block";
                 } else {
                         jotformContainer.style.display = "none";
+        }
+                // 5. NEW: Handle the image link
+                const imageContainer = document.getElementById('popoutImageContainer');
+                // Clear out any old image first
+                imageContainer.innerHTML = ''; 
+        
+                // If this link has an image source, build the HTML and insert it
+                if (imgSrc && linkUrl) {
+                    imageContainer.innerHTML = `
+                         <a href="${linkUrl}" target="_blank">
+                            <img src="${imgSrc}" alt="${imgAlt}" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                        </a>
+            `;
         }
                 
                 // Show the popout
