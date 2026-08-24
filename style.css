@@ -33,9 +33,9 @@ body, html {
 
     /* Center the text inside the section */
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
-    text-align: end;
+    text-align: center;
     position: relative;
     gap: 30px;
 }
