@@ -9,6 +9,8 @@
     /* Add this to prevent long text from breaking the layout */
     word-wrap: break-word;
 }
+
+/* Href link color = red */
 a {
     color: red;
 }
