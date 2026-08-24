@@ -33,7 +33,7 @@ body, html {
 
     /* Center the text inside the section */
     display: flex;
-    align-items: end;
+    align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
